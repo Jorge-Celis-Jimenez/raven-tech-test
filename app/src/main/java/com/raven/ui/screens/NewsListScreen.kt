@@ -19,9 +19,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.raven.Screen
 import com.raven.model.NewsItem
 import com.raven.model.formatTimeAgo
+import com.raven.ui.navigation.Screen
 import com.raven.viewmodel.NewsViewModel
 
 @Composable
@@ -34,7 +34,11 @@ fun NewsListScreen(
     LazyColumn {
         items(newsList) { newsItem ->
             NewsItemRow(newsItem) {
-                newsItem.story_url?.let { navController.navigate(Screen.NewsDetail.createRoute(it)) }
+                newsItem.story_url?.let {
+                    navController.navigate(
+                        Screen.NewsDetail.createRoute(it)
+                    )
+                }
             }
         }
     }
