@@ -21,6 +21,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.raven.Screen
 import com.raven.model.NewsItem
+import com.raven.model.formatTimeAgo
 import com.raven.viewmodel.NewsViewModel
 
 @Composable
@@ -60,7 +61,7 @@ fun NewsItemRow(
             Row(modifier = Modifier.padding(2.dp)) {
                 Text(text = newsItem.author ?: "Unknown", fontSize = 12.sp)
                 Text(text = " - ", fontSize = 12.sp)
-                Text(text = newsItem.created_at ?: "N/A", fontSize = 12.sp)
+                Text(text = newsItem.formatTimeAgo() ?: "N/A", fontSize = 12.sp)
             }
         }
     }
