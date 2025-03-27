@@ -21,14 +21,14 @@ fun NewsNavGraph(
     NavHost(
         navController = navController,
         modifier = modifier,
-        startDestination = Screen.NewsList.route
+        startDestination = Screen.NewsList.route,
     ) {
         composable(Screen.NewsList.route) {
             NewsListScreen(navController, viewModel)
         }
         composable(
             route = Screen.NewsDetail.route,
-            arguments = listOf(navArgument("url") { type = NavType.StringType })
+            arguments = listOf(navArgument("url") { type = NavType.StringType }),
         ) { backStackEntry ->
             NewsDetailScreen(Screen.NewsDetail.extractUrl(backStackEntry))
         }

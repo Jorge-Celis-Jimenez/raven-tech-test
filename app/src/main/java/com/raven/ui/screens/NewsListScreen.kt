@@ -19,6 +19,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.raven.model.NewsItem
 import com.raven.model.formatTimeAgo
 import com.raven.ui.navigation.Screen
@@ -30,14 +32,21 @@ fun NewsListScreen(
     viewModel: NewsViewModel = hiltViewModel(),
 ) {
     val newsList by viewModel.newsList.collectAsState()
+    val isRefreshing by viewModel.isRefreshing.collectAsState()
 
-    LazyColumn {
-        items(newsList) { newsItem ->
-            NewsItemRow(newsItem) {
-                newsItem.story_url?.let {
-                    navController.navigate(
-                        Screen.NewsDetail.createRoute(it)
-                    )
+    // TODO: Migrate to Modifier.pullRefresh aprroach which oddly is not working.
+    SwipeRefresh(
+        state = rememberSwipeRefreshState(isRefreshing),
+        onRefresh = { viewModel.refreshNews() },
+    ) {
+        LazyColumn {
+            items(newsList) { newsItem ->
+                NewsItemRow(newsItem) {
+                    newsItem.story_url?.let {
+                        navController.navigate(
+                            Screen.NewsDetail.createRoute(it),
+                        )
+                    }
                 }
             }
         }

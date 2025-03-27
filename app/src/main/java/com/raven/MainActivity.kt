@@ -24,12 +24,12 @@ class MainActivity : ComponentActivity() {
             RavenTechTestTheme {
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
-                    contentWindowInsets = WindowInsets.systemBars
+                    contentWindowInsets = WindowInsets.systemBars,
                 ) { innerPadding ->
                     val navController = rememberNavController()
                     NewsNavGraph(
                         navController = navController,
-                        modifier = Modifier.padding(innerPadding)
+                        modifier = Modifier.padding(innerPadding),
                     )
                 }
             }

@@ -16,7 +16,7 @@ sealed class Screen(val route: String) {
         fun extractUrl(backStackEntry: NavBackStackEntry): String {
             return URLDecoder.decode(
                 backStackEntry.arguments?.getString("url") ?: "",
-                "UTF-8"
+                "UTF-8",
             )
         }
     }

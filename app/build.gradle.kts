@@ -78,4 +78,6 @@ dependencies {
 
     // desugar
     coreLibraryDesugaring(libs.desugar.jdk.libs)
+
+    implementation(libs.accompanist.swiperefresh)
 }
