@@ -79,5 +79,11 @@ dependencies {
     // desugar
     coreLibraryDesugaring(libs.desugar.jdk.libs)
 
+    // refresh list
     implementation(libs.accompanist.swiperefresh)
+
+    // room
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    kapt(libs.room.compiler)
 }

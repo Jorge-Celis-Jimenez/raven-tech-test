@@ -1,17 +1,22 @@
 package com.raven.model
 
+import com.raven.data.local.NewsEntity
 import java.time.Duration
 import java.time.Instant
 
 data class NewsItem(
+    val objectID: String,
     val author: String?,
+    val title: String?,
     val story_title: String?,
-    val created_at: String?,
+    val created_at: String,
+    val url: String?,
     val story_url: String?,
+    val _tags: List<String>?,
 )
 
-fun NewsItem.formatTimeAgo(): String {
-    val minutesAgo = this.created_at?.toMinutesAgo() ?: return "Just now"
+fun NewsEntity.formatTimeAgo(): String {
+    val minutesAgo = this.createdAt?.toMinutesAgo() ?: return "Just now"
     return when {
         minutesAgo < 1 -> "Now"
         minutesAgo < 60 -> "${minutesAgo}m ago"
